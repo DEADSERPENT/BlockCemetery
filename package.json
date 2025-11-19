@@ -1,0 +1,34 @@
+{
+  "name": "cemetery-blockchain",
+  "version": "1.0.0",
+  "description": "Blockchain-based Cemetery Allocation Management System",
+  "main": "index.js",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "node": "hardhat node",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "dev:all": "concurrently \"npm run node\" \"npm run backend\" \"npm run frontend\""
+  },
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "cemetery",
+    "smart-contracts",
+    "web3"
+  ],
+  "author": "Cemetery Blockchain Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@types/node": "^20.10.0",
+    "concurrently": "^8.2.2",
+    "hardhat": "^2.19.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.3"
+  }
+}

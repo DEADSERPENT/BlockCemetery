@@ -1,0 +1,6 @@
+name,location,owner,numPlots,latitude,longitude,boundary,area
+Green Valley Cemetery,"123 Main St, Springfield",0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266,100,37.7749,-122.4194,"",50000
+Oak Hill Memorial Park,"456 Oak Ave, Riverside",0x70997970C51812dc3A010C7d01b50e0d17dc79C8,150,34.0522,-118.2437,"",75000
+Peaceful Rest Gardens,"789 Garden Lane, Lakeside",0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC,200,40.7128,-74.0060,"",100000
+Sunset Memorial Cemetery,"321 Sunset Blvd, Hilltown",0x90F79bf6EB2c4f870365E785982E1f101E93b906,80,41.8781,-87.6298,"",40000
+Evergreen Burial Ground,"555 Evergreen Dr, Mapleton",0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65,120,39.7392,-104.9903,"",60000
