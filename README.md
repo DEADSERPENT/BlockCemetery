@@ -123,7 +123,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/cemetery-blockchain.git
+git clone https://github.com/DEADSERPENT/cemetery-blockchain.git
 cd cemetery-blockchain
 ```
 
@@ -544,7 +544,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - Initial work
+- **SAMARTHA H V** - Initial work
 
 ## 🙏 Acknowledgments
 
@@ -555,7 +555,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email your-email@example.com or open an issue on GitHub.
+For support, email samarthsmg14@gmail.com or open an issue on GitHub.
 
 ## 🗺️ Roadmap
 
@@ -587,4 +587,4 @@ For support, email your-email@example.com or open an issue on GitHub.
 
 ---
 
-**Made with ❤️ using Blockchain Technology**
+**Made using Blockchain Technology**
