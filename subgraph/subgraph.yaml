@@ -1,0 +1,39 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: CemeteryManagerV2
+    network: sepolia  # Change to mainnet, polygon, etc. as needed
+    source:
+      address: "0x0000000000000000000000000000000000000000"  # Replace with deployed address
+      abi: CemeteryManagerV2
+      startBlock: 0  # Replace with deployment block number
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Graveyard
+        - Grave
+        - Reservation
+        - Analytics
+      abis:
+        - name: CemeteryManagerV2
+          file: ../artifacts/contracts/CemeteryManagerV2.sol/CemeteryManagerV2.json
+      eventHandlers:
+        - event: GraveyardAdded(indexed uint256,indexed address,string,string,int256,int256)
+          handler: handleGraveyardAdded
+        - event: GraveAdded(indexed uint256,indexed uint256,uint256,bytes32)
+          handler: handleGraveAdded
+        - event: GraveReserved(indexed uint256,indexed uint256,indexed address,uint256,uint256)
+          handler: handleGraveReserved
+        - event: GraveMaintained(indexed uint256,uint256)
+          handler: handleGraveMaintained
+        - event: GPSUpdated(indexed uint256,int256,int256,uint256)
+          handler: handleGPSUpdated
+        - event: GraveyardGPSUpdated(indexed uint256,int256,int256)
+          handler: handleGraveyardGPSUpdated
+        - event: BurialRecordUpdated(indexed uint256,bytes32)
+          handler: handleBurialRecordUpdated
+      file: ./src/mapping.ts

@@ -1,0 +1,251 @@
+"""
+The Graph Schema for CemeteryManagerV2
+Enables efficient querying of cemetery data without expensive RPC calls
+"""
+
+type Graveyard @entity {
+  "Unique identifier (graveyard ID)"
+  id: ID!
+
+  "Owner address"
+  owner: Bytes!
+
+  "Cemetery name"
+  name: String!
+
+  "Location description"
+  location: String!
+
+  "Total number of plots"
+  numPlots: BigInt!
+
+  "Active status"
+  active: Boolean!
+
+  "GPS latitude (scaled by 1e6)"
+  latitude: BigInt!
+
+  "GPS longitude (scaled by 1e6)"
+  longitude: BigInt!
+
+  "GPS accuracy in meters"
+  gpsAccuracy: BigInt!
+
+  "GPS timestamp"
+  gpsTimestamp: BigInt!
+
+  "IPFS hash of boundary GeoJSON (bytes32)"
+  boundaryHash: Bytes!
+
+  "Total area in square meters"
+  totalArea: BigInt!
+
+  "IPFS hash of cemetery image (bytes32)"
+  imageHash: Bytes
+
+  "All graves in this graveyard"
+  graves: [Grave!]! @derivedFrom(field: "graveyard")
+
+  "Number of reserved graves"
+  reservedCount: BigInt!
+
+  "Number of maintained graves"
+  maintainedCount: BigInt!
+
+  "Total revenue from this graveyard"
+  totalRevenue: BigInt!
+
+  "Creation timestamp"
+  createdAt: BigInt!
+
+  "Last updated timestamp"
+  updatedAt: BigInt!
+}
+
+type Grave @entity {
+  "Unique identifier (grave ID)"
+  id: ID!
+
+  "Parent graveyard"
+  graveyard: Graveyard!
+
+  "Current owner address"
+  owner: Bytes!
+
+  "Price in wei"
+  price: BigInt!
+
+  "Reservation status"
+  reserved: Boolean!
+
+  "Maintenance status"
+  maintained: Boolean!
+
+  "IPFS hash of location metadata (bytes32)"
+  locationHash: Bytes!
+
+  "IPFS hash of burial metadata (bytes32)"
+  metadataHash: Bytes
+
+  "GPS latitude (scaled by 1e6)"
+  latitude: BigInt!
+
+  "GPS longitude (scaled by 1e6)"
+  longitude: BigInt!
+
+  "GPS accuracy in meters"
+  gpsAccuracy: BigInt!
+
+  "GPS timestamp"
+  gpsTimestamp: BigInt!
+
+  "Hashed deceased name for privacy-preserving search"
+  deceasedNameHash: Bytes
+
+  "Burial date timestamp"
+  burialDate: BigInt
+
+  "Reservation timestamp"
+  reservedAt: BigInt
+
+  "Reservation details (if reserved)"
+  reservation: Reservation
+
+  "Creation timestamp"
+  createdAt: BigInt!
+
+  "Last updated timestamp"
+  updatedAt: BigInt!
+}
+
+type Reservation @entity {
+  "Unique identifier (grave ID)"
+  id: ID!
+
+  "The grave that was reserved"
+  grave: Grave!
+
+  "User who reserved the grave"
+  reservedBy: Bytes!
+
+  "Amount paid"
+  amount: BigInt!
+
+  "Reservation timestamp"
+  timestamp: BigInt!
+
+  "Transaction hash"
+  transactionHash: Bytes!
+}
+
+type DailyStats @entity {
+  "Date in YYYY-MM-DD format"
+  id: ID!
+
+  "Date timestamp"
+  date: BigInt!
+
+  "Number of reservations on this day"
+  reservations: BigInt!
+
+  "Revenue on this day"
+  revenue: BigInt!
+
+  "Number of graves maintained"
+  maintenances: BigInt!
+}
+
+type MonthlyStats @entity {
+  "Month in YYYY-MM format"
+  id: ID!
+
+  "Month timestamp (first day of month)"
+  month: BigInt!
+
+  "Number of reservations in this month"
+  reservations: BigInt!
+
+  "Revenue in this month"
+  revenue: BigInt!
+
+  "Number of graves maintained"
+  maintenances: BigInt!
+}
+
+type GlobalStats @entity {
+  "Singleton entity with ID '1'"
+  id: ID!
+
+  "Total number of graveyards"
+  totalGraveyards: BigInt!
+
+  "Total number of graves"
+  totalGraves: BigInt!
+
+  "Total reserved graves"
+  totalReserved: BigInt!
+
+  "Total maintained graves"
+  totalMaintained: BigInt!
+
+  "Total revenue"
+  totalRevenue: BigInt!
+
+  "Average grave price"
+  averagePrice: BigInt!
+
+  "Last updated timestamp"
+  updatedAt: BigInt!
+}
+
+type GPSUpdate @entity {
+  "Transaction hash + log index"
+  id: ID!
+
+  "Grave ID (if grave GPS update)"
+  graveId: BigInt
+
+  "Graveyard ID (if graveyard GPS update)"
+  graveyardId: BigInt
+
+  "New latitude"
+  latitude: BigInt!
+
+  "New longitude"
+  longitude: BigInt!
+
+  "GPS accuracy"
+  accuracy: BigInt!
+
+  "Update timestamp"
+  timestamp: BigInt!
+
+  "Transaction hash"
+  transactionHash: Bytes!
+}
+
+"""
+User entity tracks all interactions
+"""
+type User @entity {
+  "User address"
+  id: ID!
+
+  "Graves owned by this user"
+  graves: [Grave!]! @derivedFrom(field: "owner")
+
+  "Reservations made by this user"
+  reservations: [Reservation!]! @derivedFrom(field: "reservedBy")
+
+  "Total amount spent"
+  totalSpent: BigInt!
+
+  "Number of graves owned"
+  graveCount: BigInt!
+
+  "First interaction timestamp"
+  createdAt: BigInt!
+
+  "Last interaction timestamp"
+  lastActivity: BigInt!
+}
