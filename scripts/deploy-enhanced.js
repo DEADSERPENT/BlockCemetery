@@ -145,8 +145,11 @@ async function main() {
 
 // Execute deployment
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+    console.log("\nEnhanced deployment completed successfully!");
+  })
   .catch((error) => {
+    console.error("\nEnhanced deployment failed:");
     console.error(error);
-    process.exit(1);
+    throw error;
   });

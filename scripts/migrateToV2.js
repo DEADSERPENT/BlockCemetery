@@ -229,8 +229,11 @@ function printNextSteps(contractAddress) {
 }
 
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+    console.log("\nV2 migration completed successfully!");
+  })
   .catch((error) => {
+    console.error("\nV2 migration failed:");
     console.error(error);
-    process.exit(1);
+    throw error;
   });

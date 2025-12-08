@@ -88,8 +88,11 @@ async function main() {
 }
 
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+    console.log("\nAdmin verification completed!");
+  })
   .catch((error) => {
+    console.error("\nAdmin verification failed:");
     console.error(error);
-    process.exit(1);
+    throw error;
   });

@@ -6,24 +6,33 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+      },
       colors: {
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: 'var(--primary-50)',
+          100: 'var(--primary-100)',
+          200: 'var(--primary-200)',
+          300: 'var(--primary-300)',
+          400: 'var(--primary-400)',
+          500: 'var(--primary-500)',
+          600: 'var(--primary-600)',
+          700: 'var(--primary-700)',
+          800: 'var(--primary-800)',
+          900: 'var(--primary-900)',
+        },
+        accent: {
+          400: 'var(--accent-400)',
+          500: 'var(--accent-500)',
+          600: 'var(--accent-600)',
         },
         cemetery: {
           available: '#10b981',
-          reserved: '#ef4444',
-          maintained: '#f59e0b',
-          unavailable: '#6b7280'
+          reserved: '#be123c',
+          maintained: '#d97706',
+          unavailable: '#4b5563'
         }
       }
     },

@@ -257,10 +257,13 @@ async function main() {
 // Run migration
 if (require.main === module) {
   main()
-    .then(() => process.exit(0))
+    .then(() => {
+      console.log("\nMigration completed successfully!");
+    })
     .catch((error) => {
+      console.error("\nMigration failed:");
       console.error(error);
-      process.exit(1);
+      throw error;
     });
 }
 

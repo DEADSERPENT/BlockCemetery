@@ -116,8 +116,11 @@ async function main() {
 }
 
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+    console.log("\nScript completed successfully!");
+  })
   .catch((error) => {
+    console.error("\nDeployment failed:");
     console.error(error);
-    process.exit(1);
+    throw error;
   });

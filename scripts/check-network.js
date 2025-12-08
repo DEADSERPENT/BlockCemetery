@@ -62,8 +62,11 @@ async function main() {
 }
 
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+    console.log("\nNetwork check completed!");
+  })
   .catch((error) => {
+    console.error("\nNetwork check failed:");
     console.error(error);
-    process.exit(1);
+    throw error;
   });
